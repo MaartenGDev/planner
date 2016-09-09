@@ -1,18 +1,34 @@
 {
-  "private": true,
+  "name": "calendar-client",
+  "version": "1.0.0",
+  "description": "A laravel app with a react frontend to manage events. ",
+  "main": "app.js",
   "scripts": {
-    "prod": "gulp --production",
-    "dev": "gulp watch"
+    "webpack": "webpack",
+    "dev": "webpack-dev-server --progress --colors"
   },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "author": "Maarten",
+  "license": "MIT",
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "browser": "^0.2.6",
     "gulp": "^3.9.1",
-    "jquery": "^3.1.0",
-    "laravel-elixir": "^6.0.0-9",
-    "laravel-elixir-vue": "^0.1.4",
-    "laravel-elixir-webpack-official": "^1.0.2",
-    "lodash": "^4.14.0",
-    "vue": "^1.0.26",
-    "vue-resource": "^0.9.3"
+    "gulp-babel": "^6.1.2",
+    "gulp-sass": "^2.3.2",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-router": "^2.7.0"
   }
 }
