@@ -2,7 +2,7 @@
 /public/storage
 /vendor
 /.idea
+/config
 Homestead.json
 Homestead.yaml
 .env
-confdig/jwt.php
