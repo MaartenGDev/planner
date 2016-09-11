@@ -1,7 +1,9 @@
 <?php
 
 use App\Event;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,22 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/event/{id}',function(Request $request,$id){
+    return $request->user()->events()->find($id)->first();
+})->middleware('jwt.auth');
+
+Route::patch('/event/{id}',function(Request $request,Event $event){
+
+
+    $event->update($request->all());
+
+    return json_encode(['data' => 'ok']);
+
+})->middleware('jwt.auth');
 
 Route::get('/events', function (Request $request) {
-    return Event::all();
-})->middleware('auth:api');
+    return $request->user()->events()->get();
+})->middleware('jwt.auth');
 
 Route::post('/session','AuthenticateController@authenticate');
 

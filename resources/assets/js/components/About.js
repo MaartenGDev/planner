@@ -1,12 +1,14 @@
-import * as React from "react";
-import ReactDOM from 'react-dom';
+import React from "react";
+import Navigation from './Navigation';
 
 class About extends React.Component {
-    render(){
+    render() {
         return (
-            <h1>Hello About</h1>
+            <div>
+                <Navigation/>
+                <h1>Hello About</h1>
+            </div>
         )
     }
 }
-
 export default About;

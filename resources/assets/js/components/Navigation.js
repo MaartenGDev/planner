@@ -2,19 +2,14 @@ import React from 'react';
 import {Link} from 'react-router'
 
 class Navigation extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <div>
-                <h1>React Router Tutorial</h1>
-                <ul role="nav">
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/repos">Repos</Link></li>
-                </ul>
-            </div>
+            <ul role="nav">
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/events">My Events</Link></li>
+                <li><Link to="/login">Login</Link></li>
+            </ul>
         )
     }
 }
