@@ -19,18 +19,21 @@ Route::get('/event/{id}',function(Request $request,$id){
     return $request->user()->events()->find($id)->first();
 })->middleware('jwt.auth');
 
-Route::patch('/event/{id}',function(Request $request,Event $event){
+Route::patch('/event/{id}',function(Request $request,$id){
 
+    $event = $request->user()->events()->find($id)->first();
 
-    $event->update($request->all());
+    $status = $event->update($request->all());
 
-    return json_encode(['data' => 'ok']);
+    return json_encode(['data' => 'ok','status' => $status]);
 
 })->middleware('jwt.auth');
+
 
 Route::get('/events', function (Request $request) {
     return $request->user()->events()->get();
 })->middleware('jwt.auth');
+
 
 Route::post('/session','AuthenticateController@authenticate');
 

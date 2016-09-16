@@ -22,20 +22,22 @@ class Edit extends React.Component {
                 this.setState({input: {title,description,start,end}})
             });
     }
+
     updateEvent(e){
         e.preventDefault();
-
         const form = document.getElementById('editForm');
         const token = localStorage.token;
 
         fetch('/api/event/' + this.props.params.id, {
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            method: 'PATCH',
-            body: new FormData(form)
+            method: 'POST',
+            body: new FormData(form),
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+            })
         })
-            .then((res) => res.json())
+            .then((res) => {
+                return res.json();
+            })
             .then((data) => console.log(data));
 
     }
@@ -48,13 +50,14 @@ class Edit extends React.Component {
         const {title, description, start, end} = this.state.input;
         return (
             <div>
-                <form id="editForm" onSubmit={this.updateEvent}>
+                <form id="editForm" onSubmit={this.updateEvent} method="POST">
                     <input onChange={this.handleChange} name="title" value={title}></input>
                     <textarea onChange={this.handleChange} name="description" value={description}></textarea>
 
                     <input onChange={this.handleChange} name="start" type="date" value={start}/>
-                    <i>tot</i>
                     <input onChange={this.handleChange} name="end" type="date" value={end}/>
+                    <input type="hidden" name="_method" value="PATCH" />
+
                     <input type="submit"/>
                 </form>
             </div>
