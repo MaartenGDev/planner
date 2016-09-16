@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Login from './components/Login';
 import Events from './Pages/Events';
 import Edit from './components/events/Edit';
+import Add from './components/events/Add';
 
 render((
     <Router history={hashHistory}>
@@ -16,5 +17,6 @@ render((
         <Route path="/about" component={About}/>
         <Route path="/events" component={Events} />
         <Route path="/events/:id/edit" components={Edit}/>
+        <Route path="/events/create" components={Add}/>
     </Router>
 ), document.querySelector('.app'));
