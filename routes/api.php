@@ -15,25 +15,20 @@ use Illuminate\Support\Facades\Validator;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/event/{id}',function(Request $request,$id){
-    return $request->user()->events()->find($id)->first();
-})->middleware('jwt.auth');
+Route::get('/event/{id}','EventController@edit')
+    ->middleware('jwt.auth');
 
-Route::patch('/event/{id}',function(Request $request,Event $event){
-    $status = $event->update($request->all());
-    return json_encode(['data' => 'ok','status' => $status]);
-})->middleware('jwt.auth');
+Route::delete('event/{id}','EventController@delete')
+    ->middleware('jwt.auth');
 
-Route::post('/event/',function(Request $request){
-    $status = $request->user()->events()->create($request->all());
+Route::patch('/event/{event}','EventController@patch')
+    ->middleware('jwt.auth');
 
-    return json_encode(['data' => 'ok','status' => $status]);
-})->middleware('jwt.auth');
+Route::post('/event/','EventController@create')
+    ->middleware('jwt.auth');
 
-Route::get('/events', function (Request $request) {
-    return $request->user()->events()->get();
-})->middleware('jwt.auth');
-
+Route::get('/events', 'EventController@index')
+    ->middleware('jwt.auth');
 
 Route::post('/session','AuthenticateController@authenticate');
 

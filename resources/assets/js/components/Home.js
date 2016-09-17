@@ -29,11 +29,10 @@ class Home extends React.Component {
         const events = this.state.events;
 
         const eventList = events.map((event) => {
-
                 const {title,description,start,end} = event;
 
                 return (
-                    <Event title={title} description={description} start={start} end={end} showButtons={false}/>
+                    <Event title={title} description={description} start={start} end={end}/>
                 )
             }
         );

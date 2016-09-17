@@ -42,7 +42,7 @@ class Home extends React.Component {
             <div>
                 <Navigation/>
                 <h1>Event Calendar</h1>
-                <button>Add Event</button>
+                <a href="/#/events/create">Add Event</a>
                 <table>
                 {eventList}
                 </table>

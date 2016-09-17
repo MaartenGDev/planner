@@ -43,7 +43,6 @@ class Edit extends React.Component {
     }
     handleChange(event){
         const inputName = event.target.name;
-        console.log(inputName);
         this.setState({input: {[inputName]: event.target.value}});
     }
     render() {
@@ -52,7 +51,7 @@ class Edit extends React.Component {
             <div>
                 <form id="editForm" onSubmit={this.updateEvent} method="POST">
                     <input onChange={this.handleChange} name="title" value={title}></input>
-                    <textarea onChange={this.handleChange} name="description" value={description}></textarea>
+                    <textarea onChange={this.handleChange} name="description" value={description}></textarea> 
 
                     <input onChange={this.handleChange} name="start" type="date" value={start}/>
                     <input onChange={this.handleChange} name="end" type="date" value={end}/>
