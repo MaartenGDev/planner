@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,7 +24,6 @@ class EventController extends Controller
 
     public function patch(Request $request, Event $event)
     {
-
         $this->authorize('update', $event);
 
         $validator = Validator::make($request->all(), [
@@ -38,16 +39,16 @@ class EventController extends Controller
 
         $status = $event->update($request->all());
 
-        return json_encode(['data' => 'ok', 'status' => $status]);
+        return new JsonResponse(['data' => 'ok', 'status' => $status]);
     }
 
-    public function delete(Event $event)
+    public function delete(User $user, Event $event)
     {
         $this->authorize('delete', $event);
 
         $status = $event->delete();
 
-        return json_encode(['data' => 'ok', 'status' => $status]);
+        return new JsonResponse(['data' => 'ok', 'status' => $status]);
     }
 
     public function create(Request $request)
@@ -66,6 +67,6 @@ class EventController extends Controller
         $status = $request->user()->events()->create($request->all());
 
 
-        return json_encode(['data' => 'ok', 'status' => $status]);
+        return new JsonResponse(['data' => 'ok', 'status' => $status]);
     }
 }

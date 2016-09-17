@@ -51,7 +51,7 @@ class Edit extends React.Component {
             <div>
                 <form id="editForm" onSubmit={this.updateEvent} method="POST">
                     <input onChange={this.handleChange} name="title" value={title}></input>
-                    <textarea onChange={this.handleChange} name="description" value={description}></textarea> 
+                    <textarea onChange={this.handleChange} name="description" value={description}></textarea>
 
                     <input onChange={this.handleChange} name="start" type="date" value={start}/>
                     <input onChange={this.handleChange} name="end" type="date" value={end}/>

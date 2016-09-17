@@ -41,8 +41,6 @@ class EventPolicy
      * @return mixed
      */
     public function update(User $user, Event $event){
-        return true;
-
         return $user->id === $event->user_id;
     }
 

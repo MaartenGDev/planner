@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 Route::get('/event/{id}','EventController@edit')
     ->middleware('jwt.auth');
 
-Route::delete('event/{id}','EventController@delete')
+Route::delete('event/{event}','EventController@delete')
     ->middleware('jwt.auth');
 
 Route::patch('/event/{event}','EventController@patch')
