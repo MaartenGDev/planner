@@ -1,0 +1,31 @@
+$event-border: #e6e6e6;
+$event-title: #4B5C64;
+$text-color: #cbcbcb;
+
+.event{
+  display: inline-block;
+  border: 1px solid $event-border;
+  border-radius: 3px;
+  background-color: white;
+  padding: 10px;
+  margin: 10px 0 0 2%;
+  flex-grow: 1;
+  width: calc(100% * (1/4) - 10px - 1px);
+
+  &-details{
+    font-size: 14px;
+  }
+  &-details-time{
+    color: $event-title;
+  }
+  &-title{
+    font-size: 15px;
+    color: $event-title;
+    border-bottom: 1px solid #F6F7F8;
+    padding-bottom: 20px;
+  }
+
+  &-description{
+    color: $text-color;
+  }
+}

@@ -6,9 +6,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            events: []
-        };
+        this.state = {events: []};
 
         this.componentDidMount = this.componentDidMount.bind(this);
 
@@ -29,7 +27,7 @@ class Home extends React.Component {
         const events = this.state.events;
 
         const eventList = events.map((event) => {
-                const {title,description,start,end} = event;
+                const {title, description, start, end} = event;
 
                 return (
                     <Event title={title} description={description} start={start} end={end}/>
@@ -40,8 +38,12 @@ class Home extends React.Component {
         return (
             <div>
                 <Navigation/>
-                <h1>Event Calendar</h1>
-                {eventList}
+                <div className="event-app">
+                    <h1 className="title">Event Calendar</h1>
+                    <div className="event-list">
+                        {eventList}
+                    </div>
+                </div>
             </div>
         )
     }

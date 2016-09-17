@@ -1,0 +1,17 @@
+nav{
+  background-color: $blue-gray;
+
+  ul{
+    margin: 0;
+  }
+}
+nav ul li{
+  display: inline-block;
+
+  a{
+    color: $white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+  }
+}
