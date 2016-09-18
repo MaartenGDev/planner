@@ -2216,13 +2216,15 @@ html {
   clip: auto; }
 
 .container {
-  width: 960px;
+  max-width: 960px;
+  width: 100%;
   margin: 0 auto; }
 
 nav {
   background-color: #607d8b; }
   nav ul {
-    margin: 0; }
+    margin: 0;
+    padding-left: 20px; }
 
 nav ul li {
   display: inline-block; }
@@ -2248,6 +2250,22 @@ nav ul li {
   .btn-primary {
     color: #fff;
     background-color: #334257; }
+    .btn-primary :hover {
+      background-color: #2a3647; }
+  .btn-danger {
+    color: #fff;
+    background-color: #E74C3C; }
+    .btn-danger :hover {
+      background-color: #e43725; }
+  .btn-default {
+    color: #fff;
+    background-color: #47A2DE; }
+    .btn-default :hover {
+      background-color: #3197da; }
+
+.link-button {
+  display: inline-block;
+  text-decoration: none; }
 
 .card {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
@@ -2261,7 +2279,11 @@ nav ul li {
     margin-right: 10px;
     width: calc(100% - 20px); } }
 
-input[type=text], textarea, input[type=date] {
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=password],
+textarea {
   border: 1px solid #D4DEEF;
   border-radius: 3px;
   padding: 10px 3px;
@@ -2321,8 +2343,86 @@ input[type=date][name="start"] {
   margin-top: 2px;
   margin-bottom: 0; }
 
+.event-action-btn {
+  font-size: 13px;
+  padding: 10px 15px; }
+
+@media (max-width: 980px) {
+  .event {
+    margin-left: 0;
+    margin-right: 0;
+    width: calc(100% - 20px); } }
+
+.notification-bar {
+  position: fixed;
+  bottom: 2rem;
+  left: -100%;
+  width: auto;
+  padding: 1rem;
+  margin: 0px;
+  color: #fff;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 1rem;
+  line-height: normal;
+  font-family: "normal Roboto", sans-serif;
+  border-radius: 5px;
+  background-color: #334257;
+  box-shadow: rgba(10, 10, 11, 0.121569) 0px 0px 1px 1px;
+  cursor: default;
+  -webkit-transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  -webkit-transform: translateZ(0px);
+  transform: translateZ(0px); }
+
+.notification-bar-active {
+  left: 1em !important; }
+
+.notification-bar-wrapper .notification-bar-title {
+  font-weight: 700;
+  margin-right: 0.5rem; }
+
+.notification-bar-wrapper .notification-bar-action {
+  padding: 0.125rem;
+  margin-left: 1rem;
+  color: #f44336;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-family: "normal Roboto ", sans-serif;
+  letter-spacing: 0.125ex;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer; }
+
 .events {
   background-color: #607d8b; }
+
+.event-list {
+  padding: 10px; }
+  .event-list .event-form-btn-add {
+    font-size: 13px;
+    padding: 10px 15px; }
+  .event-list table {
+    color: #878f99;
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse; }
+  .event-list table td {
+    padding: 10px 5px; }
+  .event-list table tr:nth-child(odd) {
+    background-color: #F2F2F2; }
+
+.login-btn {
+  margin-top: 10px; }
+
+form input[type=email], form input[type=password] {
+  width: 200px; }
 
 body {
   font-family: 'Lato', sans-serif;
@@ -2333,7 +2433,14 @@ body {
 .event-app {
   padding: 10px; }
   .event-app .title {
-    margin-left: 10px; }
+    margin-left: 20px;
+    margin-bottom: 0; }
+
+@media (max-width: 980px) {
+  .event-app {
+    padding: 0; }
+  .event-app .title {
+    margin-left: 10px; } }
 
 .bg-red {
   background-color: #f44336; }

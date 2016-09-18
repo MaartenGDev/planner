@@ -1,0 +1,53 @@
+$notification-background: #334257;
+
+.notification-bar {
+  position: fixed;
+  bottom: 2rem;
+  left: -100%;
+  width: auto;
+  padding: 1rem;
+  margin: 0px;
+  color: $white;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  font-size: 1rem;
+  line-height: normal;
+  font-family: "normal Roboto", sans-serif;
+  border-radius: 5px;
+  background-color: $notification-background;
+  box-shadow: rgba(10, 10, 11, 0.121569) 0px 0px 1px 1px;
+  cursor: default;
+  transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
+  transform: translateZ(0px);
+}
+
+.notification-bar-active {
+  left: 1em !important;
+}
+
+.notification-bar-wrapper {
+
+  .notification-bar-title {
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+
+  .notification-bar-action {
+    padding: 0.125rem;
+    margin-left: 1rem;
+    color: rgb(244, 67, 54);
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: "normal Roboto ", sans-serif;
+    letter-spacing: 0.125ex;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

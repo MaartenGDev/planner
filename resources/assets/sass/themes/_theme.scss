@@ -8,6 +8,16 @@ body {
   padding: 10px;
 
   .title{
+    margin-left: 20px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: $mobile) {
+  .event-app{
+    padding: 0;
+  }
+  .event-app .title{
     margin-left: 10px;
   }
 }

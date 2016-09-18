@@ -1,13 +1,15 @@
 import React from "react";
 import Navigation from "./../Navigation";
+import { Notification } from 'react-notification';
 
 class Edit extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {input: {title: '', description: '', start: '', end: ''}};
+        this.state = {notification: false,input: {title: '', description: '', start: '', end: ''}};
         this.updateEvent = this.updateEvent.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.toggleNotification.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +31,7 @@ class Edit extends React.Component {
         const form = document.getElementById('editForm');
         const token = localStorage.token;
 
+
         fetch('/api/event/' + this.props.params.id, {
             method: 'POST',
             body: new FormData(form),
@@ -37,15 +40,28 @@ class Edit extends React.Component {
             })
         })
             .then((res) => {
+                const statusOk = res.status === 200;
+
+                this.setState({
+                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
+                    status: statusOk ? 'The event has been updated.' : 'Something went wrong'
+                });
+
+                this.toggleNotification();
+
                 return res.json();
             })
             .then((data) => console.log(data));
+
 
     }
 
     handleChange(event) {
         const inputName = event.target.name;
         this.setState({input: {[inputName]: event.target.value}});
+    }
+    toggleNotification() {
+        this.setState({notification: !this.state.notification})
     }
 
     render() {
@@ -69,6 +85,15 @@ class Edit extends React.Component {
                         </form>
                     </div>
                 </div>
+                <Notification
+                    isActive={this.state.notification}
+                    message={this.state.status}
+                    action="Dismiss"
+                    title={this.state.statusTitle}
+                    style={false}
+                    onDismiss={this.toggleNotification.bind(this)}
+                    onClick={() =>  this.setState({ notification: false })}
+                />
             </div>
         )
     }

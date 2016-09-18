@@ -53,6 +53,8 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
+        $this->authorize('create', Event::class);
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|min:5|max:255',
             'description' => 'required|min:5',

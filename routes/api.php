@@ -24,7 +24,7 @@ Route::delete('event/{event}','EventController@delete')
 Route::patch('/event/{event}','EventController@patch')
     ->middleware('jwt.auth');
 
-Route::post('/event/','EventController@create')
+Route::post('/event','EventController@create')
     ->middleware('jwt.auth');
 
 Route::get('/events', 'EventController@index')

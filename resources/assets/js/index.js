@@ -1,7 +1,6 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {Router, Route, hashHistory} from 'react-router'
-import About from './components/About';
 import Home from './Pages/Home';
 import Login from './components/Login';
 import Events from './Pages/Events';
@@ -13,7 +12,6 @@ render((
         <Route path="/" component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/login" component={Login}/>
-        <Route path="/about" component={About}/>
         <Route path="/events" component={Events} />
         <Route path="/events/:id/edit" components={Edit}/>
         <Route path="/events/create" components={Add}/>

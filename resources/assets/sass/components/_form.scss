@@ -1,5 +1,9 @@
 $input-border: #D4DEEF;
-input[type=text], textarea, input[type=date] {
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=password],
+textarea{
   border: 1px solid $input-border;
   border-radius: 3px;
   padding: 10px 3px;

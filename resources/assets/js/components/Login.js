@@ -11,6 +11,7 @@ class Login extends React.Component {
 
         this.sendLogin = this.sendLogin.bind(this);
     }
+
     sendLogin(e) {
         e.preventDefault();
 
@@ -32,18 +33,22 @@ class Login extends React.Component {
         return (
             <div>
                 <Navigation/>
-                <h1>Hello Login {this.state.loggedIn ? "Welcome" : "Please Login"}</h1>
+                <div className="container">
+                    <div className="card event-form">
 
-                <form id={"loginForm"} onSubmit={this.sendLogin}>
-                    <p>Username</p>
-                    <input name="email" type="email"/>
+                        <form id="loginForm" onSubmit={this.sendLogin}>
+                            <h3 className="event-form-title">Login</h3>
 
-                    <p>Password</p>
-                    <input name="password" type="password"/>
+                            <p className="input-label">Username</p>
+                            <input name="email" type="email"/>
 
-                    <button type="submit">Save</button>
-                </form>
-
+                            <p className="input-label">Password</p>
+                            <input name="password" type="password"/>
+                            <br />
+                            <button className="btn btn-primary login-btn" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }

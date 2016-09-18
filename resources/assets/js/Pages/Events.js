@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from './../components/Navigation';
 import Event from './../components/events/Event';
+import { Notification } from 'react-notification';
 
 class Home extends React.Component {
     constructor(props) {
@@ -25,15 +26,53 @@ class Home extends React.Component {
             .then((data) => this.setState({events: data}));
     }
 
+    removeEvent(id) {
+        let form = new FormData();
+        form.append('id',id);
+        form.append('_method','DELETE');
+
+        const token = localStorage.token;
+
+        fetch('/api/event/' + id, {
+            method: 'POST',
+            body: form,
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+            })
+        })
+            .then((res) => {
+                const statusOk = res.status === 200;
+
+                this.setState({
+                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
+                    status: statusOk ? 'The event has been removed.' : 'Something went wrong'
+                });
+
+                this.toggleNotification();
+                this.removeEventFromState(id);
+                return res.json();
+            })
+            .then((data) => console.log(data));
+
+    }
+    removeEventFromState(id){
+        console.log(id);
+        const events = this.state.events.filter((event) => event.id !== id);
+        this.setState({events: events})
+    }
+    toggleNotification() {
+        this.setState({notification: !this.state.notification})
+    }
+
     render() {
         const events = this.state.events;
 
         const eventList = events.map((event) => {
 
-                const {title,description,start,end,id} = event;
+                const {title, description, start, end, id} = event;
 
                 return (
-                    <Event title={title} description={description} start={start} end={end} id={id}/>
+                    <Event removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
                 )
             }
         );
@@ -41,11 +80,24 @@ class Home extends React.Component {
         return (
             <div>
                 <Navigation/>
-                <h1>Event Calendar</h1>
-                <a href="/#/events/create">Add Event</a>
-                <table>
-                {eventList}
-                </table>
+                <div className="container">
+                    <h3>My Events</h3>
+                    <div className="card event-list">
+                        <a className="btn btn-primary link-button event-form-btn-add" href="/#/events/create">Add Event</a>
+                        <table>
+                            {eventList}
+                        </table>
+                    </div>
+                </div>
+                <Notification
+                    isActive={this.state.notification}
+                    message={this.state.status}
+                    action="Dismiss"
+                    title={this.state.statusTitle}
+                    style={false}
+                    onDismiss={this.toggleNotification.bind(this)}
+                    onClick={() =>  this.setState({ notification: false })}
+                />
             </div>
         )
     }

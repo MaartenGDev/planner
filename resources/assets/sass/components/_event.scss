@@ -2,6 +2,7 @@ $event-border: #e6e6e6;
 $event-title: #4B5C64;
 $text-color: #cbcbcb;
 $event-time: #B6B6B6;
+
 .event{
   display: inline-block;
   border: 1px solid $event-border;
@@ -40,5 +41,17 @@ $event-time: #B6B6B6;
     font-weight: 500;
     margin-top: 2px;
     margin-bottom: 0;
+  }
+}
+.event-action-btn{
+  font-size: 13px;
+  padding: 10px 15px;
+}
+
+@media (max-width: $mobile) {
+  .event{
+    margin-left: 0;
+    margin-right: 0;
+    width: calc(100% - 20px);
   }
 }
