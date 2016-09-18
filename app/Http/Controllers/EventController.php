@@ -14,7 +14,7 @@ class EventController extends Controller
 
     public function index(Request $request)
     {
-        return $request->user()->events()->get();
+        return Event::with('user')->get();
     }
 
     public function edit(Request $request, $id)

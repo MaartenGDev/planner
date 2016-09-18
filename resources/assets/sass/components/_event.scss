@@ -1,21 +1,22 @@
 $event-border: #e6e6e6;
 $event-title: #4B5C64;
 $text-color: #cbcbcb;
-
+$event-time: #B6B6B6;
 .event{
   display: inline-block;
   border: 1px solid $event-border;
   border-radius: 3px;
   background-color: white;
   padding: 10px;
-  margin: 10px 0 0 2%;
+  margin: 10px 0 0 10px;
   flex-grow: 1;
-  width: calc(100% * (1/4) - 10px - 1px);
+  width: calc(100% / 3 - 35px);
 
   &-details{
     font-size: 14px;
   }
   &-details-time{
+    font-weight: 500;
     color: $event-title;
   }
   &-title{
@@ -27,5 +28,17 @@ $text-color: #cbcbcb;
 
   &-description{
     color: $text-color;
+  }
+}
+
+.event-details{
+  .event-time{
+    margin-bottom: 3px;
+  }
+  .event-user{
+    color: $event-time;
+    font-weight: 500;
+    margin-top: 2px;
+    margin-bottom: 0;
   }
 }

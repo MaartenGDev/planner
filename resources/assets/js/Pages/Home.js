@@ -1,6 +1,6 @@
 import React from "react";
-import Navigation from './Navigation';
-import Event from './Event';
+import Navigation from '../components/Navigation';
+import Event from '../components/home/Event';
 
 class Home extends React.Component {
     constructor(props) {
@@ -28,9 +28,9 @@ class Home extends React.Component {
 
         const eventList = events.map((event) => {
                 const {title, description, start, end} = event;
-
+                console.log(event);
                 return (
-                    <Event title={title} description={description} start={start} end={end}/>
+                    <Event title={title} description={description} start={start} end={end} user={event.user.name}/>
                 )
             }
         );

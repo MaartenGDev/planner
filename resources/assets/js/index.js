@@ -2,7 +2,7 @@ import React from 'react'
 import {render} from 'react-dom'
 import {Router, Route, hashHistory} from 'react-router'
 import About from './components/About';
-import Home from './components/Home';
+import Home from './Pages/Home';
 import Login from './components/Login';
 import Events from './Pages/Events';
 import Edit from './components/events/Edit';

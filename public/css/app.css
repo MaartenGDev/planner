@@ -2215,12 +2215,9 @@ html {
   overflow: visible;
   clip: auto; }
 
-.event-list {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  flex-basis: 25%;
-  align-content: space-around; }
+.container {
+  width: 960px;
+  margin: 0 auto; }
 
 nav {
   background-color: #607d8b; }
@@ -2244,56 +2241,19 @@ nav ul li {
     margin: 0;
     padding: 40px 0; }
 
-@-webkit-keyframes scaleUp {
-  from {
-    background-color: #fff; }
-  to {
-    background-color: transparent;
-    color: #fff;
-    padding: 15px 20px; } }
-
-@keyframes scaleUp {
-  from {
-    background-color: #fff; }
-  to {
-    background-color: transparent;
-    color: #fff;
-    padding: 15px 20px; } }
-
 .btn {
-  background-color: #fff; }
-  .btn-scale {
-    border: 3px solid #fff;
-    color: #f44336;
-    padding: 10px 20px;
-    text-decoration: none;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease; }
-    .btn-scale:hover {
-      background-color: transparent;
-      -webkit-transition: all .3s ease;
-      transition: all .3s ease;
-      color: #fff;
-      padding: 15px 20px; }
+  background-color: #fff;
+  border: none;
+  padding: 10px 20px; }
+  .btn-primary {
+    color: #fff;
+    background-color: #334257; }
 
-.cards {
+.card {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
-  background-color: #2196f3;
-  left: 0;
-  margin: 0 auto;
-  right: 0;
+  background-color: white;
   text-align: left;
-  width: 960px;
-  z-index: 3; }
-  .cards .tab {
-    padding: 10px 20px;
-    text-align: center; }
-  .cards .tab-details {
-    background-color: #3f51b5;
-    padding: 10px 20px; }
-  .cards .active-tab {
-    background-color: #3f51b5;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.16); }
+  margin: 30px auto auto 0; }
 
 @media screen and (max-width: 1024px) {
   .cards {
@@ -2301,19 +2261,48 @@ nav ul li {
     margin-right: 10px;
     width: calc(100% - 20px); } }
 
+input[type=text], textarea, input[type=date] {
+  border: 1px solid #D4DEEF;
+  border-radius: 3px;
+  padding: 10px 3px;
+  box-sizing: border-box; }
+
+input[type=text], textarea {
+  width: 100%;
+  max-width: 100%; }
+
+textarea {
+  min-height: 200px; }
+
+input[type=date] {
+  width: calc(50% - 5px); }
+
+input[type=date][name="start"] {
+  margin-right: 10px; }
+
+.event-form {
+  padding: 10px; }
+  .event-form .input-label {
+    margin-bottom: 2px; }
+  .event-form-title {
+    margin-top: 0; }
+  .event-form-btn {
+    margin-top: 5px; }
+
 .event {
   display: inline-block;
   border: 1px solid #e6e6e6;
   border-radius: 3px;
   background-color: white;
   padding: 10px;
-  margin: 10px 0 0 2%;
+  margin: 10px 0 0 10px;
   -webkit-box-flex: 1;
   flex-grow: 1;
-  width: calc(100% * (1/4) - 10px - 1px); }
+  width: calc(100% / 3 - 35px); }
   .event-details {
     font-size: 14px; }
   .event-details-time {
+    font-weight: 500;
     color: #4B5C64; }
   .event-title {
     font-size: 15px;
@@ -2322,6 +2311,15 @@ nav ul li {
     padding-bottom: 20px; }
   .event-description {
     color: #cbcbcb; }
+
+.event-details .event-time {
+  margin-bottom: 3px; }
+
+.event-details .event-user {
+  color: #B6B6B6;
+  font-weight: 500;
+  margin-top: 2px;
+  margin-bottom: 0; }
 
 .events {
   background-color: #607d8b; }
@@ -2335,7 +2333,7 @@ body {
 .event-app {
   padding: 10px; }
   .event-app .title {
-    margin-left: 25px; }
+    margin-left: 10px; }
 
 .bg-red {
   background-color: #f44336; }

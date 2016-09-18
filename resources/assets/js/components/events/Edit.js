@@ -1,10 +1,11 @@
 import React from "react";
+import Navigation from "./../Navigation";
 
 class Edit extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {input: {title: '',description: '',start: '',end: ''}};
+        this.state = {input: {title: '', description: '', start: '', end: ''}};
         this.updateEvent = this.updateEvent.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -19,11 +20,11 @@ class Edit extends React.Component {
             .then((res) => res.json())
             .then((data) => {
                 const {title, description, start, end} = data;
-                this.setState({input: {title,description,start,end}})
+                this.setState({input: {title, description, start, end}})
             });
     }
 
-    updateEvent(e){
+    updateEvent(e) {
         e.preventDefault();
         const form = document.getElementById('editForm');
         const token = localStorage.token;
@@ -41,24 +42,33 @@ class Edit extends React.Component {
             .then((data) => console.log(data));
 
     }
-    handleChange(event){
+
+    handleChange(event) {
         const inputName = event.target.name;
         this.setState({input: {[inputName]: event.target.value}});
     }
+
     render() {
         const {title, description, start, end} = this.state.input;
         return (
             <div>
-                <form id="editForm" onSubmit={this.updateEvent} method="POST">
-                    <input onChange={this.handleChange} name="title" value={title}></input>
-                    <textarea onChange={this.handleChange} name="description" value={description}></textarea>
-
-                    <input onChange={this.handleChange} name="start" type="date" value={start}/>
-                    <input onChange={this.handleChange} name="end" type="date" value={end}/>
-                    <input type="hidden" name="_method" value="PATCH" />
-
-                    <input type="submit"/>
-                </form>
+                <Navigation/>
+                <div className="container">
+                    <div className="card event-form">
+                        <h3 className="event-form-title">Edit Event</h3>
+                        <form id="editForm" onSubmit={this.updateEvent} method="POST">
+                            <p className="input-label">Title</p>
+                            <input id="username" type="text" onChange={this.handleChange} name="title" value={title}/>
+                            <p className="input-label">Description</p>
+                            <textarea onChange={this.handleChange} name="description" value={description}/>
+                            <p className="input-label">Dates</p>
+                            <input onChange={this.handleChange} name="start" type="date" value={start} />
+                            <input onChange={this.handleChange} name="end" type="date" value={end}/>
+                            <input type="hidden" name="_method" value="PATCH"/>
+                            <input className="btn btn-primary event-form-btn" type="submit" value="Save"/>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }

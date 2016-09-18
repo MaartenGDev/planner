@@ -14,13 +14,14 @@
 
 
 // Layouts
-@import 'layout/eventList';
+@import 'layout/container';
 @import 'layout/navigation';
 @import 'layout/page';
 
 // Components and modules
 @import 'components/buttons';
 @import 'components/card';
+@import 'components/form';
 @import 'components/event';
 
 // Per page styles
