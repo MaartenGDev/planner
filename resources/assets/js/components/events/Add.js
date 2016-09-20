@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "./../Navigation";
+import Navigation from "../common/Header";
 import {Notification} from 'react-notification';
 
 class Add extends React.Component {
@@ -57,7 +57,6 @@ class Add extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
                 <div className="container">
                     <div className="card event-form">
                         <form id="addForm" onSubmit={this.updateEvent} method="POST">

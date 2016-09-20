@@ -1,13 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router'
-import Navigation from './Navigation';
-export default React.createClass({
+import React, {PropTypes} from 'react'
+import Header from './common/Header';
+
+class App extends React.Component{
     render() {
         return (
             <div>
-                <Navigation/>
-                <h1>React Router Tutorial</h1>
+                <Header/>
+                {this.props.children}
             </div>
         )
     }
-})
+}
+
+App.propTypes = {
+    children: PropTypes.object.isRequired
+};
+
+export default App;

@@ -1,9 +1,9 @@
 import React from "react";
-import Navigation from './../components/Navigation';
-import Event from './../components/events/Event';
+import {Link} from 'react-router';
+import Event from './Event';
 import { Notification } from 'react-notification';
 
-class Home extends React.Component {
+class EventPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -79,11 +79,10 @@ class Home extends React.Component {
 
         return (
             <div>
-                <Navigation/>
                 <div className="container">
                     <h3>My Events</h3>
                     <div className="card event-list">
-                        <a className="btn btn-primary link-button event-form-btn-add" href="/#/events/create">Add Event</a>
+                        <a className="btn btn-primary link-button event-form-btn-add" href="/events/create">Add Event</a>
                         <table>
                             {eventList}
                         </table>
@@ -102,4 +101,4 @@ class Home extends React.Component {
         )
     }
 }
-export default Home;
+export default EventPage;

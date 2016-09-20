@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('app');
 });
 
-Auth::routes();
+Route::get('/{any}/{placeholder}', function () {
+    return view('app');
+});
+Route::get('/{any}/{event}/{placeholder}', function () {
+    return view('app');
+});

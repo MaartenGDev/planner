@@ -1,7 +1,6 @@
 import React from "react";
-import Navigation from './Navigation';
 
-class Login extends React.Component {
+class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -32,7 +31,6 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
                 <div className="container">
                     <div className="card event-form">
 
@@ -53,4 +51,4 @@ class Login extends React.Component {
         )
     }
 }
-export default Login;
+export default LoginPage;
