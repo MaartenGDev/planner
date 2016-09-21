@@ -64,17 +64,13 @@ class EventPage extends React.Component {
     }
 
     render() {
-        const events = this.state.events;
+        const { events, status, notification, statusTitle } = this.state;
 
-        const eventList = events.map((event) => {
-
-                const {title, description, start, end, id} = event;
-
-                return (
-                    <Event key={id} removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
-                )
-            }
-        );
+        const eventList = events.map(({title, description, start, end, id}) => {
+            return (
+                <Event key={id} removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
+            )
+        });
 
         return (
             <div>
@@ -90,16 +86,17 @@ class EventPage extends React.Component {
                     </div>
                 </div>
                 <Notification
-                    isActive={this.state.notification}
-                    message={this.state.status}
+                    isActive={notification}
+                    message={status}
                     action="Dismiss"
-                    title={this.state.statusTitle}
+                    title={statusTitle}
                     style={false}
                     onDismiss={this.toggleNotification.bind(this)}
-                    onClick={() =>  this.setState({ notification: false })}
+                    onClick={() => this.setState({ notification: false })}
                 />
             </div>
         )
     }
 }
+
 export default EventPage;
