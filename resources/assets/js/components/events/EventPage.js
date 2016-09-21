@@ -17,10 +17,9 @@ class EventPage extends React.Component {
     }
 
     componentDidMount() {
-        const token = localStorage.token;
         fetch('/api/events', {
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + localStorage.token
             }
         })
             .then((res) => res.json())
@@ -29,27 +28,24 @@ class EventPage extends React.Component {
 
     removeEvent(id) {
         let form = new FormData();
-        form.append('id',id);
-        form.append('_method','DELETE');
 
-        const token = localStorage.token;
+        form.append('id', id);
+        form.append('_method', 'DELETE');
 
         fetch('/api/event/' + id, {
             method: 'POST',
             body: form,
             headers: new Headers({
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + localStorage.token
             })
         })
-            .then((res) => {
-                const statusOk = res.status === 200;
-                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
-                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
-
-                this.toggleNotification(statusTitle,status);
-                this.removeEventFromState(id);
-
-                return res.json();
+            .then(({ status, json }) => {
+                if (status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been updated');
+                } else {
+                    this.toggleNotification('ERROR', 'Something went wrong');
+                }
+                return json();
             })
             .then((data) => console.log(data));
 
