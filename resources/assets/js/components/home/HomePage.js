@@ -27,23 +27,20 @@ class HomePage extends React.Component {
         const events = this.state.events;
 
         const eventList = events.map((event) => {
-                const {title, description, start, end} = event;
-
+                const {title, description, start, end,id} = event;
                 return (
-                    <Event title={title} description={description} start={start} end={end} user={event.user.name}/>
+                    <Event key={id} title={title} description={description} start={start} end={end} user={event.user.name}/>
                 )
             }
         );
 
         return (
-            <div>
                 <div className="event-app">
                     <h1 className="title">Event Calendar</h1>
                     <div className="event-list">
                         {eventList}
                     </div>
                 </div>
-            </div>
         )
     }
 }

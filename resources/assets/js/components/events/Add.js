@@ -32,13 +32,11 @@ class Add extends React.Component {
         })
             .then((res) => {
                 const statusOk = res.status === 200;
+                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
+                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
 
-                this.setState({
-                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
-                    status: statusOk ? 'The event has been created.' : 'Something went wrong'
-                });
+                this.toggleNotification(statusTitle,status);
 
-                this.toggleNotification();
                 return res.json();
             })
             .then((data) => console.log(data));
@@ -50,8 +48,9 @@ class Add extends React.Component {
         this.setState({input: {[inputName]: event.target.value}});
     }
 
-    toggleNotification() {
-        this.setState({notification: !this.state.notification})
+    toggleNotification(statusTitle = '',status = '') {
+
+        this.setState({statusTitle: statusTitle, status: status,notification: !this.state.notification})
     }
 
     render() {
