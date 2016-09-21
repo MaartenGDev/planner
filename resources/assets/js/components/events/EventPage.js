@@ -45,6 +45,8 @@ class EventPage extends React.Component {
                 } else {
                     this.toggleNotification('ERROR', 'Something went wrong');
                 }
+                this.removeEventFromState(id);
+
                 return json();
             })
             .then((data) => console.log(data));
