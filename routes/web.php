@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/{any}', function () {
+Route::get('/{react?}', function () {
     return view('app');
-});
-
-Route::get('/{any}/{placeholder}', function () {
-    return view('app');
-});
-Route::get('/{any}/{event}/{placeholder}', function () {
-    return view('app');
-});
+})->where('react', '[\/\w\.-]*');
