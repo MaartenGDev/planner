@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from 'react-router';
 import Event from './Event';
 import { Notification } from 'react-notification';
 
@@ -8,7 +7,9 @@ class EventPage extends React.Component {
         super(props);
 
         this.state = {
-            events: []
+            events: [],
+            status: '',
+            statusTitle: ''
         };
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -42,26 +43,24 @@ class EventPage extends React.Component {
         })
             .then((res) => {
                 const statusOk = res.status === 200;
+                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
+                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
 
-                this.setState({
-                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
-                    status: statusOk ? 'The event has been removed.' : 'Something went wrong'
-                });
-
-                this.toggleNotification();
+                this.toggleNotification(statusTitle,status);
                 this.removeEventFromState(id);
+
                 return res.json();
             })
             .then((data) => console.log(data));
 
     }
     removeEventFromState(id){
-        console.log(id);
         const events = this.state.events.filter((event) => event.id !== id);
         this.setState({events: events})
     }
-    toggleNotification() {
-        this.setState({notification: !this.state.notification})
+
+    toggleNotification(statusTitle = '',status = '') {
+        this.setState({statusTitle: statusTitle, status: status,notification: !this.state.notification})
     }
 
     render() {
@@ -72,7 +71,7 @@ class EventPage extends React.Component {
                 const {title, description, start, end, id} = event;
 
                 return (
-                    <Event removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
+                    <Event key={id} removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
                 )
             }
         );
@@ -84,7 +83,9 @@ class EventPage extends React.Component {
                     <div className="card event-list">
                         <a className="btn btn-primary link-button event-form-btn-add" href="/events/create">Add Event</a>
                         <table>
+                            <tbody>
                             {eventList}
+                            </tbody>
                         </table>
                     </div>
                 </div>

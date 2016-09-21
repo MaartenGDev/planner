@@ -1,6 +1,6 @@
 import React from "react";
 
-const Event = ({title, description, start, end, id}) => {
+const Event = ({title, description, start, end, id,removeEvent}) => {
     return (
         <tr>
             <td>{title}</td>
@@ -12,7 +12,7 @@ const Event = ({title, description, start, end, id}) => {
                 </a>
             </td>
             <td>
-                <span className="btn btn-danger link-button event-action-btn" onClick={this.props.removeEvent}>
+                <span className="btn btn-danger link-button event-action-btn" onClick={removeEvent}>
                     Remove
                 </span>
             </td>

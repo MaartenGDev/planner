@@ -37,26 +37,22 @@ class Edit extends React.Component {
         })
             .then((res) => {
                 const statusOk = res.status === 200;
+                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
+                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
 
-                this.setState({
-                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
-                    status: statusOk ? 'The event has been updated.' : 'Something went wrong'
-                });
-
-                this.toggleNotification();
+                this.toggleNotification(statusTitle,status);
             })
             .then((data) => console.log(data));
 
 
     }
 
-    handleChange(event) {
-        const inputName = event.target.name;
-        this.setState({input: {[inputName]: event.target.value}});
+    handleChange({target}) {
+        this.setState({input: {[target.name]: target.value}});
     }
 
-    toggleNotification() {
-        this.setState({notification: !this.state.notification})
+    toggleNotification(statusTitle = '',status = '') {
+        this.setState({statusTitle: statusTitle, status: status,notification: !this.state.notification})
     }
 
     render() {

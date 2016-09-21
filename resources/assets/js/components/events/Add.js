@@ -30,16 +30,20 @@ class Add extends React.Component {
                 'Authorization': 'Bearer ' + token,
             })
         })
-            .then((res) => {
-                const statusOk = res.status === 200;
+            .then(({ status, json }) => {
+                const
+                    statusOk = status === 200,
+                    statusTitle = statusOk ? 'SUCCESS' : 'ERROR',
+                    status = statusOk ? 'The event has been updated.' : 'Something went wrong';
 
-                this.setState({
-                    statusTitle: statusOk ? 'SUCCESS' : 'ERROR',
-                    status: statusOk ? 'The event has been created.' : 'Something went wrong'
-                });
+                if (status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been updated');
+                } else {
+                    this.toggleNotification('ERROR', 'Something went wrong');
+                }
+                this.toggleNotification(statusTitle, status);
 
-                this.toggleNotification();
-                return res.json();
+                return json();
             })
             .then((data) => console.log(data));
 
@@ -50,8 +54,9 @@ class Add extends React.Component {
         this.setState({input: {[inputName]: event.target.value}});
     }
 
-    toggleNotification() {
-        this.setState({notification: !this.state.notification})
+    toggleNotification(statusTitle = '',status = '') {
+
+        this.setState({statusTitle: statusTitle, status: status,notification: !this.state.notification})
     }
 
     render() {
