@@ -17,10 +17,9 @@ class EventPage extends React.Component {
     }
 
     componentDidMount() {
-        const token = localStorage.token;
         fetch('/api/events', {
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + localStorage.token
             }
         })
             .then((res) => res.json())
@@ -29,27 +28,26 @@ class EventPage extends React.Component {
 
     removeEvent(id) {
         let form = new FormData();
-        form.append('id',id);
-        form.append('_method','DELETE');
 
-        const token = localStorage.token;
+        form.append('id', id);
+        form.append('_method', 'DELETE');
 
         fetch('/api/event/' + id, {
             method: 'POST',
             body: form,
             headers: new Headers({
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + localStorage.token
             })
         })
-            .then((res) => {
-                const statusOk = res.status === 200;
-                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
-                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
-
-                this.toggleNotification(statusTitle,status);
+            .then(({ status, json }) => {
+                if (status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been updated');
+                } else {
+                    this.toggleNotification('ERROR', 'Something went wrong');
+                }
                 this.removeEventFromState(id);
 
-                return res.json();
+                return json();
             })
             .then((data) => console.log(data));
 
@@ -64,17 +62,13 @@ class EventPage extends React.Component {
     }
 
     render() {
-        const events = this.state.events;
+        const { events, status, notification, statusTitle } = this.state;
 
-        const eventList = events.map((event) => {
-
-                const {title, description, start, end, id} = event;
-
-                return (
-                    <Event key={id} removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
-                )
-            }
-        );
+        const eventList = events.map(({title, description, start, end, id}) => {
+            return (
+                <Event key={id} removeEvent={() => this.removeEvent(id)} title={title} description={description} start={start} end={end} id={id}/>
+            )
+        });
 
         return (
             <div>
@@ -90,16 +84,17 @@ class EventPage extends React.Component {
                     </div>
                 </div>
                 <Notification
-                    isActive={this.state.notification}
-                    message={this.state.status}
+                    isActive={notification}
+                    message={status}
                     action="Dismiss"
-                    title={this.state.statusTitle}
+                    title={statusTitle}
                     style={false}
                     onDismiss={this.toggleNotification.bind(this)}
-                    onClick={() =>  this.setState({ notification: false })}
+                    onClick={() => this.setState({ notification: false })}
                 />
             </div>
         )
     }
 }
+
 export default EventPage;

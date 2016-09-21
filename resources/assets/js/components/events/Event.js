@@ -1,6 +1,6 @@
 import React from "react";
 
-const Event = ({title, description, start, end, id,removeEvent}) => {
+export default ({title, description, start, end, id,removeEvent}) => {
     return (
         <tr>
             <td>{title}</td>
@@ -19,4 +19,3 @@ const Event = ({title, description, start, end, id,removeEvent}) => {
         </tr>
     )
 };
-export default Event;

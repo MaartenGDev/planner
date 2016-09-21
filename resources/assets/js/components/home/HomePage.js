@@ -13,10 +13,9 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        const token = localStorage.token;
         fetch('/api/events', {
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + localStorage.token
             }
         })
             .then((res) => res.json())
@@ -26,8 +25,7 @@ class HomePage extends React.Component {
     render() {
         const events = this.state.events;
 
-        const eventList = events.map((event) => {
-                const {title, description, start, end,id} = event;
+        const eventList = events.map(({title, description, start, end, id}) => {
                 return (
                     <Event key={id} title={title} description={description} start={start} end={end} user={event.user.name}/>
                 )

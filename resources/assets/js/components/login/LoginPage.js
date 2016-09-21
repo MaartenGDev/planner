@@ -11,8 +11,8 @@ class LoginPage extends React.Component {
         this.sendLogin = this.sendLogin.bind(this);
     }
 
-    sendLogin(e) {
-        e.preventDefault();
+    sendLogin({ preventDefault }) {
+        preventDefault();
 
         const form = document.getElementById('loginForm');
 
@@ -51,4 +51,5 @@ class LoginPage extends React.Component {
         )
     }
 }
+
 export default LoginPage;

@@ -10,42 +10,44 @@ class Add extends React.Component {
             notification: false,
             status: '',
             statusTitle: '',
-            input: {title: '', description: '', start: '', end: ''}
+            input: {
+                title: '',
+                description: '',
+                start: '',
+                end: ''
+            }
         };
         this.updateEvent = this.updateEvent.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.toggleNotification.bind(this);
     }
 
-    updateEvent(e) {
-        e.preventDefault();
-        const form = document.getElementById('addForm');
-        const token = localStorage.token;
+    updateEvent({ preventDefault }) {
+        preventDefault();
 
+        const form = document.getElementById('addForm');
 
         fetch('/api/event/', {
             method: 'POST',
             body: new FormData(form),
             headers: new Headers({
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + localStorage.token,
             })
         })
-            .then((res) => {
-                const statusOk = res.status === 200;
-                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
-                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
-
-                this.toggleNotification(statusTitle,status);
-
-                return res.json();
+            .then(({ status, json }) => {
+                if (status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been updated');
+                } else {
+                    this.toggleNotification('ERROR', 'Something went wrong');
+                }
+                return json();
             })
             .then((data) => console.log(data));
 
     }
 
-    handleChange(event) {
-        const inputName = event.target.name;
-        this.setState({input: {[inputName]: event.target.value}});
+    handleChange({ target }) {
+        this.setState({input: {[target.name]: target.value}});
     }
 
     toggleNotification(statusTitle = '',status = '') {
@@ -83,4 +85,5 @@ class Add extends React.Component {
         )
     }
 }
+
 export default Add;
