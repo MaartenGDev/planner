@@ -13,7 +13,7 @@ class Edit extends React.Component {
     }
 
     componentDidMount() {
-        fetch('/api/event/' + this.props.params.id, {
+        fetch('/api/event/' + parseInt(this.props.params.id), {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.token
             }
@@ -35,12 +35,14 @@ class Edit extends React.Component {
                 'Authorization': 'Bearer ' + localStorage.token,
             })
         })
-            .then((res) => {
-                const statusOk = res.status === 200;
-                const statusTitle = statusOk ? 'SUCCESS' : 'ERROR';
-                const status = statusOk ? 'The event has been updated.' : 'Something went wrong';
+            .then(response => {
+                if (response.status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been updated');
+                } else {
+                    this.toggleNotification('ERROR', 'Something went wrong');
+                }
 
-                this.toggleNotification(statusTitle,status);
+                return response.json();
             })
             .then((data) => console.log(data));
 

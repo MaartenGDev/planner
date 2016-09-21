@@ -25,9 +25,9 @@ class HomePage extends React.Component {
     render() {
         const events = this.state.events;
 
-        const eventList = events.map(({title, description, start, end, id}) => {
+        const eventList = events.map(({title, description, start, end, id,user}) => {
                 return (
-                    <Event key={id} title={title} description={description} start={start} end={end} user={event.user.name}/>
+                    <Event key={id} title={title} description={description} start={start} end={end} user={user.name}/>
                 )
             }
         );

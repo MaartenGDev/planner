@@ -11,8 +11,8 @@ class LoginPage extends React.Component {
         this.sendLogin = this.sendLogin.bind(this);
     }
 
-    sendLogin({ preventDefault }) {
-        preventDefault();
+    sendLogin(e) {
+        e.preventDefault();
 
         const form = document.getElementById('loginForm');
 
@@ -20,10 +20,10 @@ class LoginPage extends React.Component {
             method: 'POST',
             body: new FormData(form)
         })
-            .then((res) => {
-                this.setState({loggedIn: res.status === 200});
+            .then((response) => {
+                this.setState({loggedIn: response.status === 200});
 
-                return res.json();
+                return response.json();
             })
             .then((data) => localStorage.token = data.token);
     }

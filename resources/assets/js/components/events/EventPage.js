@@ -39,15 +39,15 @@ class EventPage extends React.Component {
                 'Authorization': 'Bearer ' + localStorage.token
             })
         })
-            .then(({ status, json }) => {
-                if (status === 200) {
-                    this.toggleNotification('SUCCESS', 'The event has been updated');
+            .then((response) => {
+                if (response.status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been removed');
                 } else {
                     this.toggleNotification('ERROR', 'Something went wrong');
                 }
                 this.removeEventFromState(id);
 
-                return json();
+                return response.json();
             })
             .then((data) => console.log(data));
 

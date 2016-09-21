@@ -22,25 +22,25 @@ class Add extends React.Component {
         this.toggleNotification.bind(this);
     }
 
-    updateEvent({ preventDefault }) {
-        preventDefault();
+    updateEvent(e) {
+        e.preventDefault();
 
         const form = document.getElementById('addForm');
 
-        fetch('/api/event/', {
+        fetch('/api/event', {
             method: 'POST',
             body: new FormData(form),
             headers: new Headers({
                 'Authorization': 'Bearer ' + localStorage.token,
             })
         })
-            .then(({ status, json }) => {
-                if (status === 200) {
-                    this.toggleNotification('SUCCESS', 'The event has been updated');
+            .then((response) => {
+                if (response.status === 200) {
+                    this.toggleNotification('SUCCESS', 'The event has been created');
                 } else {
                     this.toggleNotification('ERROR', 'Something went wrong');
                 }
-                return json();
+                return response.json();
             })
             .then((data) => console.log(data));
 

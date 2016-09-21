@@ -19,7 +19,7 @@ class EventController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return $request->user()->events()->find($id)->first();
+        return $request->user()->events()->whereId($id)->first();
     }
 
     public function patch(Request $request, Event $event)
