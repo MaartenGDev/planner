@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../common/Header";
-import {Notification} from 'react-notification';
+import { Notification } from 'react-notification';
 
 class Edit extends React.Component {
     constructor(props) {
@@ -13,15 +13,13 @@ class Edit extends React.Component {
     }
 
     componentDidMount() {
-        const token = localStorage.token;
         fetch('/api/event/' + this.props.params.id, {
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + localStorage.token
             }
         })
             .then((res) => res.json())
-            .then((data) => {
-                const {title, description, start, end} = data;
+            .then(({title, description, start, end}) => {
                 this.setState({input: {title, description, start, end}})
             });
     }
@@ -29,14 +27,12 @@ class Edit extends React.Component {
     updateEvent(e) {
         e.preventDefault();
         const form = document.getElementById('editForm');
-        const token = localStorage.token;
-
 
         fetch('/api/event/' + this.props.params.id, {
             method: 'POST',
             body: new FormData(form),
             headers: new Headers({
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + localStorage.token,
             })
         })
             .then((res) => {
@@ -48,8 +44,6 @@ class Edit extends React.Component {
                 });
 
                 this.toggleNotification();
-
-                return res.json();
             })
             .then((data) => console.log(data));
 
