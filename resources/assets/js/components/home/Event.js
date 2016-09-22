@@ -8,7 +8,7 @@ const Event = ({title, description, start, end, user}) => {
             <p className="event-description">{description}</p>
             <div className="event-details">
                 <p className="event-time"><FontAwesome name='calendar'/>
-                    <b className="event-details-time">{start} - {end}</b></p>
+                    <b className="event-details-time"> {start} - {end}</b></p>
                 <p className="event-user"><FontAwesome name='user'/> <span>{user}</span></p>
             </div>
         </div>

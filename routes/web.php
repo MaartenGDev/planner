@@ -11,6 +11,6 @@
 |
 */
 
-Route::any('/{react?}', function () {
+Route::get('/{react?}', function () {
     return view('app');
 })->where('react', '[\/\w\.-]*');

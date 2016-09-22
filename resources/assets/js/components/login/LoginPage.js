@@ -1,11 +1,14 @@
 import React from "react";
+import { Notification } from 'react-notification';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            loggedIn: false
+            loggedIn: false,
+            status: '',
+            statusTitle: ''
         };
 
         this.sendLogin = this.sendLogin.bind(this);
@@ -13,7 +16,6 @@ class LoginPage extends React.Component {
 
     sendLogin(e) {
         e.preventDefault();
-
         const form = document.getElementById('loginForm');
 
         fetch('/api/session', {
@@ -23,12 +25,24 @@ class LoginPage extends React.Component {
             .then((response) => {
                 this.setState({loggedIn: response.status === 200});
 
+                if (response.status === 200) {
+                    this.toggleNotification('SUCCESS', 'Successfully Logged In.');
+                } else {
+                    this.toggleNotification('ERROR', 'Invalid Login');
+                }
+
                 return response.json();
             })
             .then((data) => localStorage.token = data.token);
     }
 
+    toggleNotification(statusTitle = '',status = '') {
+        this.setState({statusTitle: statusTitle, status: status,notification: !this.state.notification})
+    }
+
     render() {
+        const {status, notification, statusTitle } = this.state;
+
         return (
             <div>
                 <div className="container">
@@ -47,6 +61,15 @@ class LoginPage extends React.Component {
                         </form>
                     </div>
                 </div>
+                <Notification
+                    isActive={notification}
+                    message={status}
+                    action="Dismiss"
+                    title={statusTitle}
+                    style={false}
+                    onDismiss={this.toggleNotification.bind(this)}
+                    onClick={() => this.setState({ notification: false })}
+                />
             </div>
         )
     }

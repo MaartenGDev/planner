@@ -7,9 +7,7 @@ class HomePage extends React.Component {
         super(props);
 
         this.state = {events: []};
-
         this.componentDidMount = this.componentDidMount.bind(this);
-
     }
 
     componentDidMount() {
@@ -23,22 +21,20 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const events = this.state.events;
+        const {events} = this.state;
 
-        const eventList = events.map(({title, description, start, end, id,user}) => {
-                return (
-                    <Event key={id} title={title} description={description} start={start} end={end} user={user.name}/>
-                )
-            }
+        const eventList = events.map(({title, description, start, end, id, user}) => (
+                <Event key={id} title={title} description={description} start={start} end={end} user={user.name}/>
+            )
         );
 
         return (
-                <div className="event-app">
-                    <h1 className="title">Event Calendar</h1>
-                    <div className="event-list">
-                        {eventList}
-                    </div>
+            <div className="event-app">
+                <h1 className="title">Event Calendar</h1>
+                <div className="event-list">
+                    {eventList}
                 </div>
+            </div>
         )
     }
 }
