@@ -1,6 +1,7 @@
 import React from "react";
 import Event from './Event';
 import { Notification } from 'react-notification';
+import 'whatwg-fetch';
 
 class EventPage extends React.Component {
     constructor(props) {

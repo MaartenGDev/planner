@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from '../common/Header';
 import Event from './Event';
+import 'whatwg-fetch';
 
 class HomePage extends React.Component {
     constructor(props) {

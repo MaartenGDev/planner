@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "../common/Header";
 import { Notification } from 'react-notification';
+import 'whatwg-fetch';
 
 class Edit extends React.Component {
     constructor(props) {

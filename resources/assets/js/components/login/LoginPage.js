@@ -1,5 +1,6 @@
 import React from "react";
 import { Notification } from 'react-notification';
+import 'whatwg-fetch';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -47,7 +48,6 @@ class LoginPage extends React.Component {
             <div>
                 <div className="container">
                     <div className="card event-form">
-
                         <form id="loginForm" onSubmit={this.sendLogin}>
                             <h3 className="event-form-title">Login</h3>
 
